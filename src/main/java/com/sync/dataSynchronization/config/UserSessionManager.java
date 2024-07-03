@@ -19,17 +19,17 @@ public class UserSessionManager {
         activeSessions = new HashMap<>();
     }
 
-    public void createSession(UserAuthenticateDTO userCampaignDetail) {
-        if (activeSessions.containsKey(userCampaignDetail.getId())) throw new BusinessException(
+    public void createSession(UserAuthenticateDTO userAuthenticateDTO) {
+        if (activeSessions.containsKey(userAuthenticateDTO.getId())) throw new BusinessException(
             ErrorCode.USER_EXIST_IN_SESSION);
-        activeSessions.put(userCampaignDetail.getId(), userCampaignDetail);
+        activeSessions.put(userAuthenticateDTO.getId(), userAuthenticateDTO);
     }
 
     public List<UserAuthenticateDTO> getAllSession() {
         return activeSessions.values().stream().toList();
     }
 
-    public void invalidateSession(Integer userCampaignDetailId) {
-        activeSessions.remove(userCampaignDetailId);
+    public void invalidateSession(Integer userAuthenticationId) {
+        activeSessions.remove(userAuthenticationId);
     }
 }

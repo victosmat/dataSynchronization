@@ -28,7 +28,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Service
 @Slf4j
-public class UserCampaignDetailService {
+public class UserAuthenticationService {
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final UserAuthenticateRepository userAuthenticateRepository;
@@ -37,7 +37,7 @@ public class UserCampaignDetailService {
     private final UserSessionManager userSessionManager;
 
     @Transactional(rollbackOn = Exception.class)
-    public ResponseData<UserInfoResponse> createUserCampaignDetailInfo(UserInfoRequest userInfoRequest) {
+    public ResponseData<UserInfoResponse> createUserAuthentication(UserInfoRequest userInfoRequest) {
         String userHashCode = UriUtils.decode(userInfoRequest.getUserHashCode(), Constants.UTF_8);
         String password = userInfoRequest.getPassword();
 

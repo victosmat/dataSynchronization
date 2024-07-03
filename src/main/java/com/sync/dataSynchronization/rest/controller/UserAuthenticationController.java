@@ -1,6 +1,6 @@
 package com.sync.dataSynchronization.rest.controller;
 
-import com.sync.dataSynchronization.service.UserCampaignDetailService;
+import com.sync.dataSynchronization.service.UserAuthenticationService;
 import com.sync.dataSynchronization.service.dto.ResponseData;
 import com.sync.dataSynchronization.service.dto.request.UserInfoRequest;
 import com.sync.dataSynchronization.service.dto.response.UserInfoResponse;
@@ -13,23 +13,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user-campaign-detail")
+@RequestMapping("/user-authentication")
 @SecurityRequirement(name = "bearer-key")
 @Slf4j
-public class UserCampaignDetailController {
+public class UserAuthenticationController {
 
-    private final UserCampaignDetailService userCampaignDetailService;
+    private final UserAuthenticationService userAuthenticationService;
 
     @PostMapping
-    public ResponseEntity<ResponseData<UserInfoResponse>> createUserCampaignDetail(
-            @Valid @RequestBody UserInfoRequest userInfoRequest
-    ) {
-        ResponseData<UserInfoResponse> response = userCampaignDetailService.createUserCampaignDetailInfo(userInfoRequest);
+    public ResponseEntity<ResponseData<UserInfoResponse>> createUserAuthentication(@Valid @RequestBody UserInfoRequest userInfoRequest) {
+        ResponseData<UserInfoResponse> response = userAuthenticationService.createUserAuthentication(userInfoRequest);
         log.info(
                 """
                         POST
                         userInfoRequest: {}
-                        Response API POST /user-campaign-detail: {}
+                        Response API POST /user-authentication: {}
                         """,
                 userInfoRequest,
                 response);

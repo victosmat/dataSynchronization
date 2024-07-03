@@ -69,8 +69,8 @@ public class CommonService {
 
         try {
             Map<String, Object> claims = ((JwtAuthenticationToken) authentication).getToken().getClaims();
-            Object userCampaignDetailID = claims.get("userAuthenticationID");
-            return Optional.of((Long) userCampaignDetailID);
+            Object userAuthenticationID = claims.get("userAuthenticationID");
+            return Optional.of((Long) userAuthenticationID);
         } catch (Exception e) {
             throw new BusinessException(ErrorCode.UNABLE_TO_GET_USER_AUTHENTICATION_ID_FROM_JWT);
         }
